@@ -31,17 +31,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });    
 });
 
-// const save = () => {
-//     document.getElementById("submit").onclick = function() {
-//         let addressBook = new AddressBook();
-//         addressBook.fullName = document.getElementById("fullName").value;
-//         addressBook.address = document.getElementById("address").value;
-//         addressBook.city = document.getElementById("city").value;
-//         addressBook.state = document.getElementById("state").value;
-//         addressBook.zipCode = document.getElementById("zipCode").value;
-//         addressBook.phoneNumber = document.getElementById("phoneNumber").value;    
-//     };
-// }
 const save = () => {
     try {
         let addressBook = createAddressBook();
@@ -101,5 +90,12 @@ function createAndUpdateStorage(addressBook) {
 
 
 const resetForm = () => {
+    
+    setValue('#fullName', '');
+    setValue('#address', '');
+    setValue('#city', 'Select City');
+    setValue('#state', 'Select State');
+    setValue('#zipCode', '');
+    setValue('#phoneNumber', '');
   
 }
