@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/materialTextField.css">
     <link href="http://fonts.googleapis.com/css2?family=Roboto:wght@380,480,500;688&display=swap" rel="stylesheet">
 
+    <script src="../js/addressFormValidation.js"></script>
     <title>Address Book App</title>
 </head>
 
@@ -37,12 +38,13 @@
             </header>
             <div class="form-body-content">
                 <div class="row-content">
-                    <input class="input" type="text" name="name" id="name" placeholder="Full Name" required>
-                    <error-output class="text-error" for="name"></error-output>
+                    <input class="input" type="text" name="fullName" id="fullName" placeholder="Full Name" required>
+                    <error-output class="text-error" for="fullName"></error-output>
                 </div>
                 <div class="row-content">
-                    <textarea id="notes" class="input label" name="notes" placeholder="Address"
+                    <textarea id="address" class="input label" name="address" placeholder="Address"
                         style="height: 80px;"></textarea>
+                    <error-output class="text-error-address" for="address"></error-output>
                 </div>
                 <div class="row-content-drpdown-label row-content">
 
@@ -75,7 +77,7 @@
                 <div class="row-content">
                     <input class="input" type="number" name="phoneNumber" id="phoneNumber" placeholder="Phone Number"
                         required>
-                    <error-output class="text-error" for="phoneNumber"></error-output>
+                    <error-output class="text-error-phone" for="phoneNumber"></error-output>
                 </div>
                 <div class="buttonParent">
                     <div class="submit-reset">
