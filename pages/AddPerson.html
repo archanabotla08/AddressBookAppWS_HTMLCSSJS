@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/AddEmpformStyleSheet.css">
+    <link rel="stylesheet" href="../assets/css/materialTextField.css">
     <link href="http://fonts.googleapis.com/css2?family=Roboto:wght@380,480,500;688&display=swap" rel="stylesheet">
 
     <title>Address Book App</title>
@@ -34,5 +35,54 @@
                     <img src="../assets/images/cancel.jpeg" alt="cancel">
                 </div>
             </header>
+            <div class="form-body-content">
+                <div class="row-content">
+                    <input class="input" type="text" name="name" id="name" placeholder="Full Name" required>
+                    <error-output class="text-error" for="name"></error-output>
+                </div>
+                <div class="row-content">
+                    <textarea id="notes" class="input label" name="notes" placeholder="Address"
+                        style="height: 80px;"></textarea>
+                </div>
+                <div class="row-content-drpdown-label row-content">
+
+                    <div class="row-content-drpdown" id="city">
+                        <select id="city" name="city" placeholder="Select City">
+                            <option>Select City</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hydrebad">Hydrebad</option>
+                        </select>
+                    </div>
+                    <div class="row-content-drpdown" id="state">
+                        <select id="state" name="state" placeholder="Select State">
+                            <option>Select State</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Telagana">Telagana</option>
+                        </select>
+                    </div>
+                    <div class="row-content-drpdown" id="zipcode">
+                        <div class="row-content">
+                            <input class="input" type="number" name="zipcode" id="zipcode" placeholder="Zip Code"
+                                required>
+                            <error-output class="text-error" for="zipcode"></error-output>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-content">
+                    <input class="input" type="number" name="phoneNumber" id="phoneNumber" placeholder="Phone Number"
+                        required>
+                    <error-output class="text-error" for="phoneNumber"></error-output>
+                </div>
+                <div class="buttonParent">
+                    <div class="submit-reset">
+                        <button type="submit" class="button submitButton" id="submitButton">Add</button>
+                        <button type="reset" class="resetButton button" id="resetButton">Reset</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
