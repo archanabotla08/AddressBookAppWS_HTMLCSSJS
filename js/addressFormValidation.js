@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+
 const text = document.querySelector('#fullName');
 const textError = document.querySelector('.text-error');
 text.addEventListener('input', function() {
@@ -7,17 +8,16 @@ text.addEventListener('input', function() {
         textError.textContent = "";
     else textError.textContent = "Invalid First Name ";
 });
-
 });
 window.addEventListener('DOMContentLoaded', (event) => {
-    const text = document.querySelector('#address');
-    const textError = document.querySelector('.text-error-address');
-    text.addEventListener('input', function() {
-        const regName = /^[A-Z]{1}[a-zA-Z0-9,-\s+]{2,}$/;
-        if (regName.test(text.value))
+    const address = document.querySelector('#address');
+   const textError = document.querySelector('.text-error-address');
+    address.addEventListener('input', function() {
+        const regName = /^[A-Z]{1}[a-zA-Z\s+]{2,}$/; // /^[A-Z][a-z]{2,}$/;
+        if (regName.test(address.value))
             textError.textContent = "";
-        else textError.textContent = "Invalid Address Text ";
-    });    
+        else textError.textContent = "Invalid Address ";
+    })    
 });
 
 window.addEventListener('DOMContentLoaded', (event) => {
