@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const text = document.querySelector('#fullName');
 const textError = document.querySelector('.text-error');
 text.addEventListener('input', function() {
-    const regName = /^[A-Z]{1}[a-zA-Z\s+]{2,}$/; // /^[A-Z][a-z]{2,}$/;
+    const regName = /^[A-Z]{1}[a-zA-Z0-9,-\s+]{2,}$/; // /^[A-Z][a-z]{2,}$/;
     if (regName.test(text.value))
         textError.textContent = "";
     else textError.textContent = "Invalid First Name ";
@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const address = document.querySelector('#address');
    const textError = document.querySelector('.text-error-address');
     address.addEventListener('input', function() {
-        const regName = /^[A-Z]{1}[a-zA-Z\s+]{2,}$/; // /^[A-Z][a-z]{2,}$/;
+        const regName = /^[A-Z]{1}[a-zA-Z0-9,-\s+]{2,}$/; // /^[A-Z][a-z]{2,}$/;
         if (regName.test(address.value))
             textError.textContent = "";
         else textError.textContent = "Invalid Address ";
@@ -31,17 +31,74 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });    
 });
 
+// const save = () => {
+//     document.getElementById("submit").onclick = function() {
+//         let addressBook = new AddressBook();
+//         addressBook.fullName = document.getElementById("fullName").value;
+//         addressBook.address = document.getElementById("address").value;
+//         addressBook.city = document.getElementById("city").value;
+//         addressBook.state = document.getElementById("state").value;
+//         addressBook.zipCode = document.getElementById("zipCode").value;
+//         addressBook.phoneNumber = document.getElementById("phoneNumber").value;    
+//     };
+// }
 const save = () => {
-    document.getElementById("submit").onclick = function() {
-        let addressBook = new AddressBook();
-        addressBook.fullName = document.getElementById("fullName").value;
-        addressBook.address = document.getElementById("address").value;
-        addressBook.city = document.getElementById("city").value;
-        addressBook.state = document.getElementById("state").value;
-        addressBook.zipCode = document.getElementById("zipCode").value;
-        addressBook.phoneNumber = document.getElementById("phoneNumber").value;    
-    };
+    try {
+        let addressBook = createAddressBook();
+        createAndUpdateStorage(addressBook);
+    } catch (e) {
+        return
+    }
 }
+
+const createAddressBook = () => {
+    let addressBook = new AddressBook();
+    try {
+        addressBook.fullName = getInputValueById('#fullName');
+    } catch (e) {
+        setTextValue('.text-error', e);
+        throw e;
+    }
+
+    addressBook.address = getInputValueById('#address');
+    addressBook.city = getInputValueById('#city');
+    addressBook.state = getInputValueById('#state');
+    addressBook.zipCode = getInputValueById('#zipCode');
+    addressBook.phoneNumber = getInputValueById('#phoneNumber');
+    alert(addressBook.toString());
+    return addressBook;
+}
+
+const getSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let setItems = [];
+    allItems.forEach(item => {
+        if (item.checked) setItems.push(item.value);
+    });
+    return setItems;
+}
+
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
+
+const getInputElementValue = (id) => {
+    let value = document.getElementById(id).value;
+    return value;
+}
+
+function createAndUpdateStorage(addressBook) {
+    let addressBookList = JSON.parse(localStorage.getItem("AddressBookList"));
+    if (addressBookList != undefined) {
+        addressBookList.push(addressBook);
+    } else {
+        addressBookList = [addressBook];
+    }
+    alert(addressBookList.toString());
+    localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
+}
+
 
 const resetForm = () => {
   

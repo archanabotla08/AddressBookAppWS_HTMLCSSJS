@@ -20,7 +20,7 @@ class AddressBook {
         return this._address;
     }
     set address(address) {
-        let addressRegex = /^[A-Z]{1}[a-zA-Z\s+]{2,}$/;
+        let addressRegex = /^[A-Z]{1}[a-zA-Z0-9,-\s+]{2,}$/;
         if (addressRegex.test(address))
             this._address = address;
         else
