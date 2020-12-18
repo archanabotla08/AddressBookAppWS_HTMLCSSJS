@@ -35,7 +35,7 @@ const createInnerHtml = () => {
 const remove = (node) => {
     let personDetails = addressBookList.find(personData => personData._fullName == node.id);
     if (!personDetails) return;
-    const index = addressBookList.map(personData => personData._fullName).indexOf(personDetails._fullName);
+    const index = addressBookList.map(personData => personData._fullName).indexOf(personDetails._name);
     addressBookList.splice(index, 1);
     localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
     createInnerHtml();
