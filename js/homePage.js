@@ -1,3 +1,4 @@
+let addressBookList;
 window.addEventListener("DOMContentLoaded", (event) => {
     addressBookList = getAddressBookDataFromStorage();
     document.querySelector(".person-count").textContent = addressBookList.length;
@@ -23,7 +24,7 @@ const createInnerHtml = () => {
     <td>${person._zipCode}</td>
     <td>${person._phoneNumber}</td>
     <td>
-        <img id="${person._id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
+        <img id="${person._fullName}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
         <img id="${person._id}" alt="edit" onclick="update(this)" src="../assets/icons/create-black-18dp.svg">
     </td>
  </tr>
@@ -31,33 +32,41 @@ const createInnerHtml = () => {
     }
     document.querySelector("#display").innerHTML = innerHtml;
 };
+const remove = (node) => {
+    let personDetails = addressBookList.find(personData => personData._fullName == node.id);
+    if (!personDetails) return;
+    const index = addressBookList.map(personData => personData._fullName).indexOf(personDetails._fullName);
+    addressBookList.splice(index, 1);
+    localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
+    createInnerHtml();
+}
 
-const createAddressBookJSON = () => {
-    let addressBookListLocal = [{
-            _fullName: "Sridhar",
-            _address: "Shivaji Nager",
-            _city: "Mumbai",
-            _state: "Maharashtra",
-            _zipCode: "898123",
-            _phoneNumber: "9890912342"
+// const createAddressBookJSON = () => {
+//     let addressBookListLocal = [{
+//             _fullName: "Sridhar",
+//             _address: "Shivaji Nager",
+//             _city: "Mumbai",
+//             _state: "Maharashtra",
+//             _zipCode: "898123",
+//             _phoneNumber: "9890912342"
 
-        },
-        {
-            _fullName: "Sweety Botla",
-            _address: "Sri-Nagar colony ",
-            _city: "Nanded",
-            _state: "Maharashtra",
-            _zipCode: "901234",
-            _phoneNumber: "8912345687"
-        },
-        {
-            _fullName: "Archana Botla",
-            _address: "Sita Nagar colony",
-            _city: "Jaipur",
-            _state: "Rajasthan",
-            _zipCode: "458923",
-            _phoneNumber: "9910991099"
-        }
-    ];
-    return addressBookListLocal;
-};
+//         },
+//         {
+//             _fullName: "Sweety Botla",
+//             _address: "Sri-Nagar colony ",
+//             _city: "Nanded",
+//             _state: "Maharashtra",
+//             _zipCode: "901234",
+//             _phoneNumber: "8912345687"
+//         },
+//         {
+//             _fullName: "Archana Botla",
+//             _address: "Sita Nagar colony",
+//             _city: "Jaipur",
+//             _state: "Rajasthan",
+//             _zipCode: "458923",
+//             _phoneNumber: "9910991099"
+//         }
+//     ];
+//     return addressBookListLocal;
+// };
