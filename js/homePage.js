@@ -1,11 +1,18 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+    addressBookList = getAddressBookDataFromStorage();
+    document.querySelector(".person-count").textContent = addressBookList.length;
     createInnerHtml();
 });
 
+const getAddressBookDataFromStorage = () => {
+    return localStorage.getItem('AddressBookList') ? JSON.parse(localStorage.getItem('AddressBookList')) : [];
+}
+
 const createInnerHtml = () => {
     const headerHtml = "<tr><th>FullName</th><th>Address</th><th>City</th><th>State</th><th>ZipCode</th><th>PhoneNumber</th><th>Actions</th></tr>"
+    if (addressBookList.length == 0) return hi;
     let innerHtml = `${headerHtml}`
-    let addressBookList = createAddressBookJSON();
+  //  let addressBookList = createAddressBookJSON();
     for (const person of addressBookList) {
         innerHtml = `${innerHtml}
     <tr>
