@@ -8,6 +8,7 @@ text.addEventListener('input', function() {
         textError.textContent = "";
     else textError.textContent = "Invalid First Name ";
 });
+
 });
 window.addEventListener('DOMContentLoaded', (event) => {
     const address = document.querySelector('#address');
